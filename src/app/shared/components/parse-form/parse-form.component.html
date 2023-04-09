@@ -1,0 +1,25 @@
+<h3 class="form-description">Paste url and click submit for start chat</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field [appearance]="'outline'" floatLabel="always">
+    <mat-label>Site url</mat-label>
+    <input matInput placeholder="Enter url" formControlName="url" />
+    <mat-error *ngIf="form.controls.url.hasError('required')"> Field required </mat-error>
+    <mat-error *ngIf="form.controls.url.hasError('pattern')"> Invalid site url address </mat-error>
+    <mat-error *ngIf="form.controls.url.hasError('server')"> Cannot parse info from site </mat-error>
+  </mat-form-field>
+  <!--  or-->
+  <!--  <app-file-input formControlName="file" acceptedTypes=".pdf" [maxFileSize]="100"></app-file-input>-->
+  <button
+    (click)="onSubmit()"
+    type="submit"
+    [disabled]="(form.invalid && form.touched) || loading"
+    mat-button
+    color="primary"
+    class="submit-button"
+    [class.loading]="loading">
+    Submit
+    <mat-icon *ngIf="loading" inline color="primary">
+      <mat-spinner diameter="15" />
+    </mat-icon>
+  </button>
+</form>

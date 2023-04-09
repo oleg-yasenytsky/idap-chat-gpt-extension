@@ -1,0 +1,6 @@
+<app-chat-history [history]="userHistory$ | async" class="chat-history"/>
+<app-parse-form
+  [loading]="loading$ | async"
+  (send)="onParseUrl($event)"
+  [error]="error"
+  class="parse-form"/>

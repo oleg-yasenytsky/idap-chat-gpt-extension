@@ -1,0 +1,19 @@
+<mat-form-field
+  [appearance]="appearance"
+  [floatLabel]="floatLabel"
+  (click)="onClickFormField()"
+  [class.mat-form-field-invalid]="!!uploadFileError">
+  <mat-label>Select file</mat-label>
+  <input matInput [formControl]="selectFileName" readonly />
+  <label for="fileInput" (click)="$event.stopPropagation()"> Icon </label>
+
+  <input
+    #fileInput
+    type="file"
+    id="fileInput"
+    [accept]="acceptedTypes"
+    hidden
+    (change)="onFileChange($event)"
+    name="fileInput" />
+  <mat-error *ngIf="uploadFileError">{{ uploadFileError.message }}</mat-error>
+</mat-form-field>

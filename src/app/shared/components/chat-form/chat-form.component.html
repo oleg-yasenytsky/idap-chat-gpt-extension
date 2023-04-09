@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+  <mat-form-field [appearance]="'outline'">
+    <!--    <mat-label>Message</mat-label>-->
+    <textarea
+      #textarea
+      matInput
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="2"
+      cdkAutosizeMaxRows="5"
+      placeholder="Enter message..."
+      formControlName="message"
+      (change)="onChangeMessage()"
+      (keydown)="handleKeyDown($event)">
+    </textarea>
+  </mat-form-field>
+  <ng-container *ngIf="connection === 'generation'; else submitTpl">
+    <button (click)="onStopGeneration()" type="button" mat-button color="primary"> Stop generation </button>
+  </ng-container>
+  <ng-template #submitTpl>
+    <button type="submit" mat-raised-button [disabled]="connection === 'loading'" color="primary">
+      <img src="/assets/icons/send-icon.svg" class="send-icon" alt="send-icon" />
+      <mat-icon *ngIf="connection === 'loading'" inline color="primary">
+        <mat-spinner diameter="15" />
+      </mat-icon>
+    </button>
+  </ng-template>
+</form>
