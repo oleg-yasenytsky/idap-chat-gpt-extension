@@ -88,7 +88,7 @@ app-chat h1{
   color: #222222;
   .blink > :last-child::after, .blink:empty {
     content: "";
-    width: 6px;
+    width: 2px;
     height: 18px;
     background: #000;
     display: inline-block;
